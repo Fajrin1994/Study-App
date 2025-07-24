@@ -25,6 +25,7 @@
     User
 </div>
 
+
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item active">
     <a class="nav-link" href="{{route('users.index')}}">
