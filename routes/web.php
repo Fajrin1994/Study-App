@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MaterialController as AdminMaterialController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TearcherController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Guru\MaterialController;
@@ -31,6 +34,9 @@ Route::get('/student', function () {
 
 Route::resource('/admin/users', UserController::class);
 Route::resource('/admin/teacher', TearcherController::class);
+Route::resource('/admin/student', StudentController::class);
+Route::resource('/admin/category', CategoryController::class);
+Route::get('/admin/approval', [AdminMaterialController::class, 'index'])->name('adminmaterial.index');
 Route::resource('/guru/materials', MaterialController::class);
 Route::resource('/murid/discussion', DiscussionController::class);
 Route::post('/murid/logs', [StudentCourseLog::class, 'store'])->name('logs.store');

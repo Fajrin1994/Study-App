@@ -21,7 +21,7 @@ class StudentController extends Controller
 
     public function store(Request $request) {
         Student::create($request->all());
-        return redirect()->route('students.index')->with('success', 'Murid ditambahkan');
+        return redirect()->route('student.index')->with('success', 'Murid ditambahkan');
     }
 
     public function edit(Student $student) {
@@ -31,11 +31,11 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $student) {
         $student->update($request->all());
-        return redirect()->route('students.index')->with('success', 'Murid diperbarui');
+        return redirect()->route('student.index')->with('success', 'Murid diperbarui');
     }
 
     public function destroy(Student $student) {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Murid dihapus');
+        return redirect()->route('student.index')->with('success', 'Murid dihapus');
     }
 }

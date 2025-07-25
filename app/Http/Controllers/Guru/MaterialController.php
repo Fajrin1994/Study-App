@@ -31,7 +31,7 @@ class MaterialController extends Controller
         ]);
         return redirect()->route('materials.index')->with('success', 'Materi ditambahkan');
     }
-public function edit(Material $material) {
+    public function edit(Material $material) {
         $categories = Category::all();
         return view('guru.materials.edit', compact('material', 'categories'));
     }

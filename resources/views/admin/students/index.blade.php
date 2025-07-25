@@ -31,12 +31,12 @@
         <span>Admin</span></a>
 </li>
 
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="{{route('teacher.index')}}">
         <span>Teacher</span></a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="{{route('student.index')}}">
         <span>Student</span></a>
 </li>
@@ -49,7 +49,7 @@
 </div>
 
 <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{route('adminmaterial.index')}}">
         <span>Aprroval</span></a>
 </li>
 
@@ -68,6 +68,67 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <h1 class="h3 mb-0 text-gray-800">Student</h1>
+</div>
+
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Student</h6>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-secondary mb-3" href="{{route('student.create')}}">create</a>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>    
+                            <th>Name</th>
+                            <th>Alamat</th>
+                            <th>No_Telepon</th>
+                            <th>Kelas</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($students as $index => $student)
+                        <tr>
+                            <td>
+                                {{ $index + 1}}
+                            </td>
+
+                            <td>
+                                {{ $student->user->name}}
+                            </td>
+
+                            <td>
+                                {{ $student->alamat}}
+                            </td>
+
+                            <td>
+                                {{ $student->no_telepon}}
+                            </td>
+
+                            <td>
+                                {{ $student->kelas}}
+                            </td>
+                            <td>
+                                {{ $student->status}}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{route('student.edit', $student)}}">edit</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection
