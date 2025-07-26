@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Study App - Admin</div>
+        <div class="sidebar-brand-text mx-3">Study App - Student</div>
     </a>
 
     <!-- Divider -->
@@ -13,49 +13,40 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link" href="#">
             <span>Dashboard</span></a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        User
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('users.index') }}">
-            <span>Admin</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('teacher.index') }}">
-            <span>Teacher</span></a>
-    </li>
-
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('student.index') }}">
-            <span>Student</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
     <div class="sidebar-heading">
         Material
     </div>
 
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('adminmaterial.index') }}">
-            <span>Aprroval</span></a>
+        <a class="nav-link" href="{{ route('muridmaterials.index') }}">
+            <span>All Material</span>
+        </a>
     </li>
 
+        <li class="nav-item active">
+        <a class="nav-link" href="{{ route('muridmaterials.mine') }}">
+            <span>My Material</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Discussions
+    </div>
+
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('category.index') }}">
-            <span>Category</span></a>
+        <a class="nav-link" href="#">
+        <span>Discussions</span></a>
     </li>
 
     <hr class="sidebar-divider d-none d-md-block">
@@ -68,61 +59,55 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Student</h1>
+        <h1 class="h3 mb-0 text-gray-800">My Material</h1>
     </div>
-
     <div class="container-fluid">
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Student</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Material</h6>
             </div>
             <div class="card-body">
-                <a class="btn btn-secondary mb-3" href="{{ route('student.create') }}">Create</a>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>Alamat</th>
-                                <th>No_Telepon</th>
-                                <th>Kelas</th>
-                                <th>Status</th>
-                                <th></th>
+                                <th>Title</th>
+                                <th>Desciption</th>
+                                <th>Type</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($students as $index => $student)
+                            @forelse ($materials_approved as $index => $material)
                                 <tr>
                                     <td>
                                         {{ $index + 1 }}
                                     </td>
 
                                     <td>
-                                        {{ $student->user->name }}
+                                        {{ $material->teacher->user->name }}
                                     </td>
 
                                     <td>
-                                        {{ $student->alamat }}
+                                        {{ $material->title }}
                                     </td>
 
                                     <td>
-                                        {{ $student->no_telepon }}
+                                        {{ $material->description }}
                                     </td>
 
                                     <td>
-                                        {{ $student->kelas }}
-                                    </td>
-                                    <td>
-                                        {{ $student->status }}
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" href="{{ route('student.edit', $student) }}">edit</a>
+                                        {{ $material->type }}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No data available</td>
+                                </tr>
+                            @endforelse
                         </tbody>
 
                     </table>

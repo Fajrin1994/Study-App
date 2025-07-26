@@ -49,12 +49,12 @@
         Material
     </div>
 
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="{{ route('adminmaterial.index') }}">
             <span>Aprroval</span></a>
     </li>
 
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('category.index') }}">
             <span>Category</span></a>
     </li>
@@ -69,54 +69,17 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Category</h1>
+        <h1 class="h3 mb-0 text-gray-800">Approval - Preview</h1>
     </div>
-
-    <div class="container-fluid">
-
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Category</h6>
-            </div>
-            <div class="card-body">
-                <a class="btn btn-secondary mb-3" href="{{ route('category.create') }}">Create</a>
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($categories as $index => $category)
-                                <tr>
-                                    <td>
-                                        {{ $index + 1 }}
-                                    </td>
-
-                                    <td>
-                                        {{ $category->name }}
-                                    </td>
-
-                                    <td>
-                                        {{ $category->description }}
-                                    </td>
-
-                                    <td>
-                                        <a class="btn btn-primary" href="{{ route('category.edit', $category) }}">Edit</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
+    <!-- PDF Preview -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <iframe 
+                src="{{ asset($material->file_path) }}" 
+                width="100%" 
+                height="600px"
+                style="border: none;"
+            ></iframe>
         </div>
-
     </div>
 @endsection

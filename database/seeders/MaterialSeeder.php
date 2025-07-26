@@ -24,8 +24,18 @@ class MaterialSeeder extends Seeder
             'title' => 'Aljabar Dasar',
             'description' => 'Pengenalan konsep aljabar',
             'type' => 'ebook',
-            'file_path' => 'uploads/ebook/aljabar.pdf',
+            'file_path' => 'internal/material/ebook/aljabar.pdf',
             'approval_status' => 'approved',
+        ]);
+
+        Material::create([
+            'teacher_id' => $teacher->id,
+            'category_id' => $category->id,
+            'title' => 'Aljabar Dasar 2',
+            'description' => 'Pengenalan konsep aljabar 2',
+            'type' => 'ebook',
+            'file_path' => 'internal/material/ebook/aljabar.pdf',
+            'approval_status' => 'pending',
         ]);
     }
 }
