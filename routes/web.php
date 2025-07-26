@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:murid'])->group(function () {
     // Route murid role
     Route::get('/murid/dashboard', fn() => view('murid.index'))->name('murid.dashboard');
     Route::get('/murid/materials', [MuridMaterialController::class, 'index'])->name('muridmaterials.index');
-    Route::post('/murid/materials/{id}', [MuridMaterialController::class, 'index'])->name('muridmaterials.show');
+    Route::post('/murid/materials/{id}', [MuridMaterialController::class, 'show'])->name('muridmaterials.show');
     Route::get('/murid/my-materials', [MuridMaterialController::class, 'myMaterials'])->name('muridmaterials.mine');
     Route::resource('/murid/discussion', DiscussionController::class);
     Route::post('/murid/logs', [StudentCourseLog::class, 'store'])->name('logs.store');

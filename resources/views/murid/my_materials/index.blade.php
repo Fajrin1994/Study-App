@@ -78,6 +78,7 @@
                                 <th>Title</th>
                                 <th>Desciption</th>
                                 <th>Type</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,6 +102,13 @@
 
                                     <td>
                                         {{ $material->type }}
+                                    </td>
+
+                                    <td>
+                                        <form method="POST" action="{{ route('muridmaterials.show', $material->id) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary btn-sm">View</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Study App - Teacher</div>
+        <div class="sidebar-brand-text mx-3">Study App - Student</div>
     </a>
 
     <!-- Divider -->
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('guru.dashboard') }}">
+        <a class="nav-link" href="#">
             <span>Dashboard</span></a>
     </li>
 
@@ -24,9 +24,29 @@
         Material
     </div>
 
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('materials.index') }}">
-            <span>My Material</span></a>
+        <a class="nav-link" href="{{ route('muridmaterials.index') }}">
+            <span>All Material</span>
+        </a>
+    </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('muridmaterials.mine') }}">
+            <span>My Material</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Discussions
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+        <span>Discussions</span></a>
     </li>
 
     <hr class="sidebar-divider d-none d-md-block">
