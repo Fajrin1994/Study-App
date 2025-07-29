@@ -116,6 +116,11 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" href="{{ route('teacher.edit', $teacher) }}">edit</a>
+                                        <form action="{{ route('teacher.destroy', $teacher) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

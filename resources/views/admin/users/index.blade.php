@@ -107,6 +107,12 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" href="{{ route('users.edit', $user) }}">edit</a>
+                                        <form action="{{ route('users.destroy', $user) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">delete</button>
+                                        </form>
+                                        
                                     </td>
                                 </tr>
                             @endforeach

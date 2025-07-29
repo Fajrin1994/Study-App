@@ -31,7 +31,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route admin role
     Route::get('/admin/dashboard', fn() => view('admin.index'))->name('admin.dashboard');
-    Route::resource('/admin/users', UserController::class);
+    Route::resource('/admin/users', UserController::class)->except(['show']);
     Route::resource('/admin/teacher', TearcherController::class);
     Route::resource('/admin/student', StudentController::class);
     Route::resource('/admin/category', CategoryController::class);

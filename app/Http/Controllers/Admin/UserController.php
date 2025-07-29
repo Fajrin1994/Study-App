@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
-        $users = User::where('role', 'admin')->get();
+    public function index()
+    {
+        $users = User::where('role', 'admin')
+                    ->where('id', '!=', auth()->id())
+                    ->get();
 
-        return view('admin.users.index',compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     public function create()
@@ -25,14 +28,14 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required'
+            
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role,
+            'role' => 'admin' ,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
@@ -43,7 +46,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user) {
-        $user->update($request->only('name', 'email', 'role'));
+        $user->update($request->only('name', 'email'));
         return redirect()->route('users.index')->with('success', 'User updated');
     }
 

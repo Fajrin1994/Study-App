@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TearcherController extends Controller
 {
@@ -20,22 +21,34 @@ class TearcherController extends Controller
     }
 
     public function store(Request $request) {
-        Teacher::create($request->all());
-        return redirect()->route('teachers.index')->with('success', 'Guru ditambahkan');
+        $guru = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'guru',
+        ]);
+
+        Teacher::create([
+            'user_id' => $guru->id,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->no_telepon,
+            'mapel' => $request->mapel,
+        ]);
+        return redirect()->route('teacher.index')->with('success', 'Guru ditambahkan');
     }
 
     public function edit(Teacher $teacher) {
-        $users = User::where('role', 'guru')->get();
-        return view('admin.teachers.edit', compact('teacher', 'users'));
+        $user = User::where('id' , $teacher->user_id)->get();
+        return view('admin.teachers.edit', compact('teacher', 'user'));
     }
 
     public function update(Request $request, Teacher $teacher) {
         $teacher->update($request->all());
-        return redirect()->route('teachers.index')->with('success', 'Guru diperbarui');
+        return redirect()->route('teacher.index')->with('success', 'Guru diperbarui');
     }
 
     public function destroy(Teacher $teacher) {
         $teacher->delete();
-        return redirect()->route('teachers.index')->with('success', 'Guru dihapus');
+        return redirect()->route('teacher.index')->with('success', 'Guru dihapus');
     }
 }
