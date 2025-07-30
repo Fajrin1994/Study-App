@@ -23,6 +23,12 @@ use App\Http\Controllers\MUrid\MaterialController as MuridMaterialController;
 |
 */
 
+Route::get('/_routes', function () {
+    return collect(\Illuminate\Support\Facades\Route::getRoutes())
+        ->map(fn($r) => [$r->methods(), $r->uri(), $r->getName()])
+        ->values();
+});
+
 // routes/web.php
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
